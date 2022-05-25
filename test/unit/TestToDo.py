@@ -62,7 +62,9 @@ class TestDatabaseFunctions(unittest.TestCase):
     def test_get_table(self):
         print ('Start: test_get_table')
         print('Table name:' + self.table.name)
+        print('Table name:' + os.environ['DYNAMODB_TABLE'])
         print('Table name:' + self.dynamodb)
+        print('Aqui!!')
         from src.todoList import get_table
         #self.dynamodb = None
         table = get_table(self.dynamodb)
