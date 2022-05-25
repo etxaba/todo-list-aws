@@ -22,6 +22,9 @@ def get_table(dynamodb=None):
                                                    endpoint_url=URL)
             dynamodb = boto3.resource("dynamodb")
         # fetch todo from the database
+        print('Despues del if')
+        print(dynamodb)
+        print(os.environ['DYNAMODB_TABLE'])
         table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
         print(table)
         return table
