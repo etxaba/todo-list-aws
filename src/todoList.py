@@ -8,7 +8,7 @@ from botocore.exceptions import ClientError
 
 
 def get_table(dynamodb=None):
-    try:
+    #try:
         if not dynamodb:
             URL = os.environ['ENDPOINT_OVERRIDE']
             if URL:
@@ -19,9 +19,9 @@ def get_table(dynamodb=None):
             dynamodb = boto3.resource("dynamodb")
         # fetch todo from the database
         table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
-    except ClientError as e:
-        print(e.response['Error']['Message'])
-    else:
+    #except ClientError as e:
+    #    print(e.response['Error']['Message'])
+    #else:
 		return table
 
 
