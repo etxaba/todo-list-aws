@@ -59,29 +59,29 @@ class TestDatabaseFunctions(unittest.TestCase):
         print ('End: test_table_exists')
         
 
-#    def test_put_todo(self):
-#        print ('---------------------')
-#        print ('Start: test_put_todo')
-#        # Testing file functions
-#        from src.todoList import put_item
-#        # Table local
-#        response = put_item(self.text, self.dynamodb)
-#        print ('Response put_item:' + str(response))
-#        self.assertEqual(200, response['statusCode'])
-#        # Table mock
-#        #self.assertEqual(200, put_item(self.text, self.dynamodb)[
-#        #                 'ResponseMetadata']['HTTPStatusCode'])
-#        print ('End: test_put_todo')
+    def test_put_todo(self):
+        print ('---------------------')
+        print ('Start: test_put_todo')
+        # Testing file functions
+        from src.todoList import put_item
+        # Table local
+        response = put_item(self.text, self.dynamodb)
+        print ('Response put_item:' + str(response))
+        self.assertEqual(200, response['statusCode'])
+        # Table mock
+        #self.assertEqual(200, put_item(self.text, self.dynamodb)[
+        #                 'ResponseMetadata']['HTTPStatusCode'])
+        print ('End: test_put_todo')
 
-#    def test_put_todo_error(self):
-#        print ('---------------------')
-#        print ('Start: test_put_todo_error')
-#        # Testing file functions
-#        from src.todoList import put_item
-#        # Table mock
-#        self.assertRaises(Exception, put_item("", self.dynamodb))
-#        self.assertRaises(Exception, put_item("", self.dynamodb))
-#        print ('End: test_put_todo_error')
+    def test_put_todo_error(self):
+        print ('---------------------')
+        print ('Start: test_put_todo_error')
+        # Testing file functions
+        from src.todoList import put_item
+        # Table mock
+        self.assertRaises(Exception, put_item("", self.dynamodb))
+        self.assertRaises(Exception, put_item("", self.dynamodb))
+        print ('End: test_put_todo_error')
 
     def test_get_todo(self):
         print ('---------------------')
@@ -175,30 +175,30 @@ class TestDatabaseFunctions(unittest.TestCase):
                 self.dynamodb))
         print ('End: atest_update_todo_error')
 
-    def test_delete_todo(self):
-        print ('---------------------')
-        print ('Start: test_delete_todo')
-        from src.todoList import delete_item
-        from src.todoList import put_item
-        from src.todoList import get_items
-        # Testing file functions
-        # Table mock
-        responsePut = put_item(self.text, self.dynamodb)
-        print ('Response PutItem' + str(responsePut))
-        idItem = json.loads(responsePut['body'])['id']
-        print ('Id item:' + idItem)
-        delete_item(idItem, self.dynamodb)
-        print ('Item deleted succesfully')
-        self.assertTrue(len(get_items(self.dynamodb)) == 0)
-        print ('End: test_delete_todo')
+#    def test_delete_todo(self):
+#        print ('---------------------')
+#        print ('Start: test_delete_todo')
+#        from src.todoList import delete_item
+#        from src.todoList import put_item
+#        from src.todoList import get_items
+#        # Testing file functions
+#        # Table mock
+#        responsePut = put_item(self.text, self.dynamodb)
+#        print ('Response PutItem' + str(responsePut))
+#        idItem = json.loads(responsePut['body'])['id']
+#        print ('Id item:' + idItem)
+#        delete_item(idItem, self.dynamodb)
+#        print ('Item deleted succesfully')
+#        self.assertTrue(len(get_items(self.dynamodb)) == 0)
+#        print ('End: test_delete_todo')
 
-    def test_delete_todo_error(self):
-        print ('---------------------')
-        print ('Start: test_delete_todo_error')
-        from src.todoList import delete_item
-        # Testing file functions
-        self.assertRaises(TypeError, delete_item("", self.dynamodb))
-        print ('End: test_delete_todo_error')
+#    def test_delete_todo_error(self):
+#        print ('---------------------')
+#        print ('Start: test_delete_todo_error')
+#        from src.todoList import delete_item
+#        # Testing file functions
+#        self.assertRaises(TypeError, delete_item("", self.dynamodb))
+#        print ('End: test_delete_todo_error')
 
 
 
