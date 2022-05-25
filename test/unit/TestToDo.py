@@ -58,6 +58,17 @@ class TestDatabaseFunctions(unittest.TestCase):
         #self.assertIn('todoTable', self.table_local.name)
         print ('End: test_table_exists')
         
+    
+    def test_get_table(self):
+        print ('Start: test_get_table')
+        print('Table name:' + self.table.name)
+        from src.todoList import get_table
+        #self.dynamodb = None
+        table = get_table(self.dynamodb)
+        print ('Table name:' +table.name)
+        self.assertIn(table.name, self.table.name)
+        print ('End: test_get_table')
+        
 
     def test_put_todo(self):
         print ('---------------------')
@@ -175,30 +186,30 @@ class TestDatabaseFunctions(unittest.TestCase):
                 self.dynamodb))
         print ('End: atest_update_todo_error')
 
-#    def test_delete_todo(self):
-#        print ('---------------------')
-#        print ('Start: test_delete_todo')
-#        from src.todoList import delete_item
-#        from src.todoList import put_item
-#        from src.todoList import get_items
-#        # Testing file functions
-#        # Table mock
-#        responsePut = put_item(self.text, self.dynamodb)
-#        print ('Response PutItem' + str(responsePut))
-#        idItem = json.loads(responsePut['body'])['id']
-#        print ('Id item:' + idItem)
-#        delete_item(idItem, self.dynamodb)
-#        print ('Item deleted succesfully')
-#        self.assertTrue(len(get_items(self.dynamodb)) == 0)
-#        print ('End: test_delete_todo')
+    def test_delete_todo(self):
+        print ('---------------------')
+        print ('Start: test_delete_todo')
+        from src.todoList import delete_item
+        from src.todoList import put_item
+        from src.todoList import get_items
+        # Testing file functions
+        # Table mock
+        responsePut = put_item(self.text, self.dynamodb)
+        print ('Response PutItem' + str(responsePut))
+        idItem = json.loads(responsePut['body'])['id']
+        print ('Id item:' + idItem)
+        delete_item(idItem, self.dynamodb)
+        print ('Item deleted succesfully')
+        self.assertTrue(len(get_items(self.dynamodb)) == 0)
+        print ('End: test_delete_todo')
 
-#    def test_delete_todo_error(self):
-#        print ('---------------------')
-#        print ('Start: test_delete_todo_error')
-#        from src.todoList import delete_item
-#        # Testing file functions
-#        self.assertRaises(TypeError, delete_item("", self.dynamodb))
-#        print ('End: test_delete_todo_error')
+    def test_delete_todo_error(self):
+        print ('---------------------')
+        print ('Start: test_delete_todo_error')
+        from src.todoList import delete_item
+        # Testing file functions
+        self.assertRaises(TypeError, delete_item("", self.dynamodb))
+        print ('End: test_delete_todo_error')
 
 
 
