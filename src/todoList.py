@@ -26,7 +26,7 @@ def get_table(dynamodb=None):
         print(dynamodb)
         print(os.environ['DYNAMODB_TABLE'])
         table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
-        print(table)
+        print('despues de table')
         return table
     except Exception as e:
         print(e)
