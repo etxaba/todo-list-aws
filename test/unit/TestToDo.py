@@ -65,7 +65,8 @@ class TestDatabaseFunctions(unittest.TestCase):
         print('Table name:' + os.environ['DYNAMODB_TABLE'])
         from src.todoList import get_table
         #self.dynamodb = None
-        table = get_table(self.table.name)
+        #table = get_table(self.table.name)
+        table = get_table('');
         print('Aqui!!')
         print ('Table name resultado:' + table.name)
         self.assertIn(table.name, self.table.name)
