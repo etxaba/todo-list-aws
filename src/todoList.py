@@ -12,6 +12,7 @@ def get_table(dynamodb=None):
         print('Estoy en get_table')
         print(dynamodb)
         if not dynamodb:
+            print('Estoy dentro de not dynamodb')
             URL = os.environ['ENDPOINT_OVERRIDE']
             print(URL)
             if URL:
