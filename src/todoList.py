@@ -29,7 +29,7 @@ def get_table(dynamodb=None):
         print('despues de table')
         return table
     except Exception as e:
-        print('Error en get_table: ' + e)
+        print('Error en get_table: ' + str(e))
 
 
 def get_item(key, dynamodb=None):
