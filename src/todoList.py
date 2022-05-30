@@ -9,25 +9,25 @@ from botocore.exceptions import ClientError
 
 def get_table(dynamodb=None):
     try:
-        #print('Estoy en get_table')
-        #print(dynamodb)
+        # print('Estoy en get_table')
+        # print(dynamodb)
         if not dynamodb:
-            #print('Estoy dentro de not dynamodb')
+            # print('Estoy dentro de not dynamodb')
             URL = os.environ['ENDPOINT_OVERRIDE']
-            #print(URL)
+            # print(URL)
             if URL:
-                #print('URL dynamoDB:'+URL)
+                # print('URL dynamoDB:'+URL)
                 boto3.client = functools.partial(boto3.client,
                                                  endpoint_url=URL)
                 boto3.resource = functools.partial(boto3.resource,
                                                    endpoint_url=URL)
             dynamodb = boto3.resource("dynamodb")
         # fetch todo from the database
-        #print('Despues del if')
-        #print(dynamodb)
-        #print(os.environ['DYNAMODB_TABLE'])
+        # print('Despues del if')
+        # print(dynamodb)
+        # print(os.environ['DYNAMODB_TABLE'])
         table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
-        #print('despues de table')
+        # print('despues de table')
         return table
     except Exception as e:
         print('Error en get_table: ' + str(e))
