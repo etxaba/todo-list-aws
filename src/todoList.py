@@ -12,18 +12,31 @@ def get_table(dynamodb=None):
         if not dynamodb:
             URL = os.environ['ENDPOINT_OVERRIDE']
             if URL:
+<<<<<<< HEAD
                 boto3.client = functools.partial(boto3.client,
                                                  endpoint_url=URL)
+=======
+                print('URL dynamoDB:'+URL)
+                boto3.client = functools.partial(boto3.client, endpoint_url=URL)
+>>>>>>> 10c55e25d411cd453cad0f0a9864f3b48e22a944
                 boto3.resource = functools.partial(boto3.resource,
                                                    endpoint_url=URL)
             dynamodb = boto3.resource("dynamodb")
         # fetch todo from the database
+<<<<<<< HEAD
         # print(dynamodb)
         # print(os.environ['DYNAMODB_TABLE'])
         table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
         return table
     except Exception as e:
         print('Error en get_table: ' + str(e))
+=======
+        table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+    else:
+		return table
+>>>>>>> 10c55e25d411cd453cad0f0a9864f3b48e22a944
 
 
 def get_item(key, dynamodb=None):
