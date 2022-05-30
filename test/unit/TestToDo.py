@@ -72,6 +72,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         print('Aqui despues no none!!')
         print ('Table name resultado:' + table.name)
         self.assertIn(table.name, self.table.name)
+        self.assertRaises(Exception, get_table())
         print ('End: test_get_table')
         
 
