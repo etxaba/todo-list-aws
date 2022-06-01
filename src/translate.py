@@ -11,8 +11,6 @@ def translate(event, context):
     item = todoList.get_item(event['pathParameters']['id'])
     if item:
         try:
-            #result = translate.translate_text(Text=item.get('text'), 
-            #        SourceLanguageCode="en", TargetLanguageCode="es")
             result = translate.translate_text(Text=item.get('text'), 
                     SourceLanguageCode="auto", TargetLanguageCode=event['pathParameters']['language'])
             print('TranslatedText: ' + result.get('TranslatedText'))
@@ -27,7 +25,7 @@ def translate(event, context):
             print(e)
             response = {
                 "statusCode": 400,
-                "body": str(e)#json.dumps(e, cls=decimalencoder.DecimalEncoder)
+                "body": str(e)
             }
         
     else:

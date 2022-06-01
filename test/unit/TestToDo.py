@@ -64,8 +64,12 @@ class TestDatabaseFunctions(unittest.TestCase):
         print('Table name:' + self.table.name)
         print('Table name:' + os.environ['DYNAMODB_TABLE'])
         from src.todoList import get_table
+        #self.dynamodb = None
         table = get_table();
+        print('Aqui despues none!!')
+        print ('Table name resultado:' + table.name)
         table = get_table(self.table.name);
+        print('Aqui despues no none!!')
         print ('Table name resultado:' + table.name)
         self.assertIn(table.name, self.table.name)
         self.assertRaises(Exception, get_table())
@@ -212,6 +216,29 @@ class TestDatabaseFunctions(unittest.TestCase):
         # Testing file functions
         self.assertRaises(TypeError, delete_item("", self.dynamodb))
         print ('End: test_delete_todo_error')
+        
+    def test_translate_todo(self):
+        print ('---------------------')
+        print ('Start: test_translate_todo')
+        from src.todoList import get_item
+        from src.todoList import put_item
+        from src.todoList import translate_item
+
+        # Testing file functions
+        # Table mock
+        responsePut = put_item(self.text, self.dynamodb)
+        print ('Response put_item:' + str(responsePut))
+        idItem = json.loads(responsePut['body'])['id']
+        print ('Id item:' + idItem)
+        self.assertEqual(200, responsePut['statusCode'])
+        responseGet = get_item(
+                idItem,
+                self.dynamodb)
+        print ('Response Get:' + str(responseGet))
+        self.assertEqual(
+            self.text,
+            responseGet['text'])
+        print ('End: test_translate_todo')
 
 
 
