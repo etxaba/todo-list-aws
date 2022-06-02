@@ -1,12 +1,11 @@
-import json
-import decimalencoder
 import todoList
 import boto3
 
 
 def translate(event, context):
-    translate = boto3.client(service_name='translate', region_name='us-east-1', use_ssl=True)
-    
+    translate = boto3.client(service_name='translate', region_name='us-east-1',
+                             use_ssl=True)
+
     # create a response
     item = todoList.get_item(event['pathParameters']['id'])
     if item:
@@ -27,7 +26,6 @@ def translate(event, context):
                 "statusCode": 400,
                 "body": str(e)
             }
-        
     else:
         response = {
             "statusCode": 404,
