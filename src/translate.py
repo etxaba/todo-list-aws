@@ -11,8 +11,11 @@ def translate(event, context):
     item = todoList.get_item(event['pathParameters']['id'])
     if item:
         try:
-            result = translate.translate_text(Text=item.get('text'), 
-                    SourceLanguageCode="auto", TargetLanguageCode=event['pathParameters']['language'])
+            result = todoList.translate_item(item.get('text'),event['pathParameters']['language'])
+            #result = translate.translate_text(
+            #            Text=item.get('text'),
+            #            SourceLanguageCode="auto",
+            #            TargetLanguageCode=event['pathParameters']['language'])
             print('TranslatedText: ' + result.get('TranslatedText'))
             print('SourceLanguageCode: ' + result.get('SourceLanguageCode'))
             print('TargetLanguageCode: ' + result.get('TargetLanguageCode'))

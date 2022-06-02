@@ -238,7 +238,9 @@ class TestDatabaseFunctions(unittest.TestCase):
         self.assertEqual(
             self.text,
             responseGet['text'])
-        print ('End: test_translate_todo')
+        responseTranslate = translate_item(self.text,"en")
+        print ('Response Translate:' + str(responseTranslate))
+        print ('End: test_trans_todo')
 
 
 
