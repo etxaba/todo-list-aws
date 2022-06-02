@@ -243,6 +243,5 @@ class TestDatabaseFunctions(unittest.TestCase):
         print ('End: test_trans_todo')
 
 
-
 if __name__ == '__main__':
     unittest.main()
