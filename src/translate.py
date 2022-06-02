@@ -12,7 +12,8 @@ def translate(event, context):
         try:
             result = translate.translate_text(Text=item.get('text'),
                                               SourceLanguageCode="auto",
-                                              TargetLanguageCode=event['pathParameters']['language'])
+                                              TargetLanguageCode=
+                                              event['pathParameters']['language'])
             print('TranslatedText: ' + result.get('TranslatedText'))
             print('SourceLanguageCode: ' + result.get('SourceLanguageCode'))
             print('TargetLanguageCode: ' + result.get('TargetLanguageCode'))
