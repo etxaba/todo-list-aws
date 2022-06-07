@@ -224,6 +224,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         from src.todoList import put_item
         from src.todoList import translate_item
 
+        self.dynamodb = None
         # Testing file functions
         # Table mock
         responsePut = put_item(self.text, self.dynamodb)
@@ -240,6 +241,9 @@ class TestDatabaseFunctions(unittest.TestCase):
             responseGet['text'])
         responseTranslate = translate_item(self.text,"en")
         print ('Response Translate:' + str(responseTranslate))
+        self.assertEqual(
+            self.text,
+            "Esto es una prueba")
         print ('End: test_trans_todo')
 
 
