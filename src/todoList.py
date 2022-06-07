@@ -155,7 +155,7 @@ def create_todo_table(dynamodb):
 
 def translate_item(text, language, translate=None):
     try:
-        print('Translate: ' + translate)
+        print("Translate: " + str(translate))
         if not translate:
             translate = boto3.client(
                             service_name='translate',
@@ -172,4 +172,5 @@ def translate_item(text, language, translate=None):
 
         return result
     except Exception as e:
+        print("Estoy en la excepcion")
         print(e)
