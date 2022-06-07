@@ -3,17 +3,23 @@ import boto3
 
 
 def translate(event, context):
-    translate = boto3.client(service_name='translate', region_name='us-east-1', use_ssl=True)
+    translate = boto3.client(
+					service_name='translate',
+					region_name='us-east-1',
+					use_ssl=True)
     result = todoList.translate_item("I am very happy in this work","es")
     # create a response
     item = todoList.get_item(event['pathParameters']['id'])
     if item:
         try:
-            #result = translate.translate_text(
+            # result = translate.translate_text(
             #            Text=item.get('text'),
             #            SourceLanguageCode="auto",
             #            TargetLanguageCode=event['pathParameters']['language'])
-            result = todoList.translate_item(item.get('text'),event['pathParameters']['language'],translate)
+            result = todoList.translate_item(
+					item.get('text'),
+					event['pathParameters']['language'],
+					translate)
             response = {
                 "statusCode": 200,
                 "body": result.get('TranslatedText')
@@ -24,12 +30,11 @@ def translate(event, context):
             response = {
                 "statusCode": 400,
                 "body": str(e)
-            }
-    else:
-        response = {
-            "statusCode": 404,
-            "body": ""
-        }
-    
-    return response
+			}
+	else:
+		response = {
+			"statusCode": 404,
+			"body": ""
+		}
 
+	return response
