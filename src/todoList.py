@@ -164,10 +164,10 @@ def translate_item(text, language, translate=None):
 					Text=text,
 					SourceLanguageCode="auto",
 					TargetLanguageCode=language)
-		print('TranslatedText: ' + result.get('TranslatedText'))
-		print('SourceLanguageCode: ' + result.get('SourceLanguageCode'))
-		print('TargetLanguageCode: ' + result.get('TargetLanguageCode'))
-
-		return result
+        print('TranslatedText: ' + result.get('TranslatedText'))
+        print('SourceLanguageCode: ' + result.get('SourceLanguageCode'))
+        print('TargetLanguageCode: ' + result.get('TargetLanguageCode'))
+        
+        return result
     except Exception as e:
         print(e)

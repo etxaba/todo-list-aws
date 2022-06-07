@@ -31,10 +31,9 @@ def translate(event, context):
                 "statusCode": 400,
                 "body": str(e)
 			}
-	else:
-		response = {
+    else:
+        response = {
 			"statusCode": 404,
 			"body": ""
-		}
-
-	return response
+        }
+    return response
