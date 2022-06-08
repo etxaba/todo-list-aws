@@ -239,7 +239,11 @@ class TestDatabaseFunctions(unittest.TestCase):
         #self.assertEqual(
         #    self.text,
         #    responseGet['text'])
-        responseTranslate = translate_item(self.text,"en")
+        translate = boto3.client(
+                        service_name='translate',
+                        region_name='us-east-1',
+                        use_ssl=True)
+        responseTranslate = translate_item(self.text,"en",translate)
         print ('Response Translate:' + str(responseTranslate))
         self.assertEqual(
             responseTranslate,
