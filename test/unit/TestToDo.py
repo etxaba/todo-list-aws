@@ -220,30 +220,34 @@ class TestDatabaseFunctions(unittest.TestCase):
     def test_translate_todo(self):
         print ('---------------------')
         print ('Start: test_translate_todo')
-        from src.todoList import get_item
-        from src.todoList import put_item
+        #from src.todoList import get_item
+        #from src.todoList import put_item
         from src.todoList import translate_item
 
-        self.dynamodb = None
+        #self.dynamodb = None
         # Testing file functions
         # Table mock
-        responsePut = put_item(self.text, self.dynamodb)
-        print ('Response put_item:' + str(responsePut))
-        idItem = json.loads(responsePut['body'])['id']
-        print ('Id item:' + idItem)
-        self.assertEqual(200, responsePut['statusCode'])
-        responseGet = get_item(
-                idItem,
-                self.dynamodb)
-        print ('Response Get:' + str(responseGet))
-        self.assertEqual(
-            self.text,
-            responseGet['text'])
+        #responsePut = put_item(self.text, self.dynamodb)
+        #print ('Response put_item:' + str(responsePut))
+        #idItem = json.loads(responsePut['body'])['id']
+        #print ('Id item:' + idItem)
+        #self.assertEqual(200, responsePut['statusCode'])
+        #responseGet = get_item(
+        #        idItem,
+        #        self.dynamodb)
+        #print ('Response Get:' + str(responseGet))
+        #self.assertEqual(
+        #    self.text,
+        #    responseGet['text'])
         responseTranslate = translate_item(self.text,"en")
         print ('Response Translate:' + str(responseTranslate))
         self.assertEqual(
-            self.text,
-            "Esto es una prueba")
+            responseTranslate,
+            "Learn DevOps and Cloud at UNIR")
+        self.assertEqual(
+            translate_item(self.text,"fr"),
+            "Learn DevOps and Cloud at UNIR")
+        #Découvrez DevOps et le Cloud à l'UNIR
         print ('End: test_trans_todo')
 
 
