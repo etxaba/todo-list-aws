@@ -7,6 +7,7 @@ def translate(event, context):
                         service_name='translate',
                         region_name='us-east-1',
                         use_ssl=True)
+    print("Estoy en translate")
     # create a response
     item = todoList.get_item(event['pathParameters']['id'])
     if item:

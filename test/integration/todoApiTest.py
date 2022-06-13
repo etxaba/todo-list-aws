@@ -7,6 +7,7 @@ import json
 
 import pytest
 
+
 BASE_URL = os.environ.get("BASE_URL")
 #BASE_URL = "https://m0qwfec693.execute-api.us-east-1.amazonaws.com/Prod"
 DEFAULT_TIMEOUT = 2  # in secs
@@ -18,7 +19,7 @@ class TestApi(unittest.TestCase):
     def setUp(self):
         self.assertIsNotNone(BASE_URL, "URL no configurada")
         self.assertTrue(len(BASE_URL) > 8, "URL no configurada")
-
+    
     def test_api_listtodos(self):
         print('---------------------------------------')
         print('Starting - integration test List TODO')
@@ -221,20 +222,14 @@ class TestApi(unittest.TestCase):
             jsonbody['text'], "Integration text example - GET", "Error en la petición API a {url}"
         )
         #Test GET TODO
-        url = BASE_URL+"/todos/"+ID_TODO
+        url = BASE_URL+"/todos/"+ID_TODO+"/en"
         response = requests.get(url)
         json_response = response.json()
-        print('Response Get Todo: '+ str(json_response))
+        print('Response Translate Todo: '+ str(json_response))
         self.assertEqual(
             response.status_code, 200, "Error en la petición API a {url}"
         )
-        self.assertEqual(
-            json_response['text'], "Integration text example - GET", "Error en la petición API a {url}"
-        )
-        #Delete TODO to restore state
-        response = requests.delete(url)
-        self.assertEqual(
-            response.status_code, 200, "Error en la petición API a {url}"
-        )
+        
+        
         print('End - integration test Translate TODO')
     

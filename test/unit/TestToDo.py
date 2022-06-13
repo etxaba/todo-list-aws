@@ -1,3 +1,4 @@
+# coding=utf-8
 # from pprint import pprint
 import warnings
 import unittest
@@ -220,34 +221,21 @@ class TestDatabaseFunctions(unittest.TestCase):
     def test_translate_todo(self):
         print ('---------------------')
         print ('Start: test_translate_todo')
-        #from src.todoList import get_item
-        #from src.todoList import put_item
         from src.todoList import translate_item
 
-        #self.dynamodb = None
-        # Testing file functions
-        # Table mock
-        #responsePut = put_item(self.text, self.dynamodb)
-        #print ('Response put_item:' + str(responsePut))
-        #idItem = json.loads(responsePut['body'])['id']
-        #print ('Id item:' + idItem)
-        #self.assertEqual(200, responsePut['statusCode'])
-        #responseGet = get_item(
-        #        idItem,
-        #        self.dynamodb)
-        #print ('Response Get:' + str(responseGet))
-        #self.assertEqual(
-        #    self.text,
-        #    responseGet['text'])
-        responseTranslate = translate_item(self.text,"en")
+        translate = boto3.client(
+                        service_name='translate',
+                        region_name='us-east-1',
+                        use_ssl=True,
+                        endpoint_url=None)
+        responseTranslate = translate_item(self.text,"en",translate)
         print ('Response Translate:' + str(responseTranslate))
         self.assertEqual(
             responseTranslate,
             "Learn DevOps and Cloud at UNIR")
         self.assertEqual(
             translate_item(self.text,"fr"),
-            "Learn DevOps and Cloud at UNIR")
-        #Découvrez DevOps et le Cloud à l'UNIR
+            "Découvrez DevOps et le Cloud à l'UNIR")
         print ('End: test_trans_todo')
 
 
